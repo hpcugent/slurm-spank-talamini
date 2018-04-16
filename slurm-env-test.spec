@@ -35,9 +35,9 @@ gcc -lslurm -o %{_builddir}/libslurm_dummy %{_builddir}/libslurm_dummy.c
 %install
 install -d %{buildroot}%{_libdir}/slurm
 install -d %{buildroot}%{_sysconfdir}/slurm/plugstack.conf.d
-install -m 755 private-tmpdir.so %{buildroot}%{_libdir}/slurm/
+install -m 755 env-test.so %{buildroot}%{_libdir}/slurm/
 # install -m 644 plugstack.conf \
-#    %{buildroot}%{_sysconfdir}/slurm/plugstack.conf.d/private-tmpdir.conf
+#    %{buildroot}%{_sysconfdir}/slurm/plugstack.conf.d/env-test.conf
 
 %clean
 rm -rf %{buildroot}
@@ -45,8 +45,8 @@ rm -rf %{buildroot}
 %files
 %doc README LICENSE
 %defattr(-,root,root,-)
-%{_libdir}/slurm/private-tmpdir.so
-#%config %{_sysconfdir}/slurm/plugstack.conf.d/private-tmpdir.conf
+%{_libdir}/slurm/env-test.so
+#%config %{_sysconfdir}/slurm/plugstack.conf.d/env-test.conf
 
 %changelog
 * Tue Mar 20 2018 Andy Georges <andy.georges@ugent.be> - 0.0.2-1.ug
