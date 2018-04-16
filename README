@@ -1,0 +1,18 @@
+This is a SPANK plugin for Slurm that tests the environment settings
+prior to a job running.
+
+Author: 
+	Andy Georges <andy.georges@ugent.be>
+
+
+Example
+-------
+
+plugstack.conf:
+
+optional env-test.so
+
+Cleanup
+-------
+
+The plugin does not do any cleanup.
