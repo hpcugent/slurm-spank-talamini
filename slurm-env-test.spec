@@ -49,9 +49,5 @@ rm -rf %{buildroot}
 #%config %{_sysconfdir}/slurm/plugstack.conf.d/env-test.conf
 
 %changelog
-* Tue Mar 20 2018 Andy Georges <andy.georges@ugent.be> - 0.0.2-1.ug
-- Adjustments for HPC Ugent
-* Thu Feb 02 2017 Pär Lindfors <paran@nsc.liu.se> - 0.0.2-1
-- Support multiple base parameters
-* Mon Feb 16 2015 Pär Lindfors <paran@nsc.liu.se> - 0.0.1-1
-- Initial RPM packaging
+* Tue Apr 15 2018 Andy Georges <andy.georges@ugent.be> - 0.0.1-1.ug
+- Initial version for UGent
