@@ -1,8 +1,14 @@
-This is a SPANK plugin for Slurm that tests the environment settings
-prior to a job running.
+This is a repository for SPANK plugins for Slurm develop by HPCUGent.
 
 Author: 
 	Andy Georges <andy.georges@ugent.be>
+
+Plugins
+-------
+
+## env-test
+
+Logs the environment for local and remote runs. 
 
 
 Example

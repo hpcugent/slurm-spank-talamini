@@ -1,7 +1,7 @@
 %define _use_internal_dependency_generator 0
 %define __find_requires %{_builddir}/find-requires
-Summary: Slurm SPANK plugin for testing the environment
-Name: slurm-env-test
+Summary: Slurm SPANK plugins developed by HPCUGent
+Name: slurm-spank-talamini
 Version: 0.0.1
 %global rel	1
 Release: %{rel}%{gittag}%{?dist}.ug
@@ -13,8 +13,7 @@ BuildRequires: slurm-devel
 Requires: slurm
 
 %description
-Slurm SPANK plugin that uses file system namespaces to create private
-temporary directories for each job.
+Various Slurm SPANK plugins.
 
 %prep
 %setup -q
@@ -36,8 +35,6 @@ gcc -lslurm -o %{_builddir}/libslurm_dummy %{_builddir}/libslurm_dummy.c
 install -d %{buildroot}%{_libdir}/slurm
 install -d %{buildroot}%{_sysconfdir}/slurm/plugstack.conf.d
 install -m 755 env-test.so %{buildroot}%{_libdir}/slurm/
-# install -m 644 plugstack.conf \
-#    %{buildroot}%{_sysconfdir}/slurm/plugstack.conf.d/env-test.conf
 
 %clean
 rm -rf %{buildroot}
@@ -46,8 +43,7 @@ rm -rf %{buildroot}
 %doc README LICENSE
 %defattr(-,root,root,-)
 %{_libdir}/slurm/env-test.so
-#%config %{_sysconfdir}/slurm/plugstack.conf.d/env-test.conf
 
 %changelog
-* Tue Apr 15 2018 Andy Georges <andy.georges@ugent.be> - 0.0.1-1.ug
+* Mon Apr 15 2018 Andy Georges <andy.georges@ugent.be> - 0.0.1-1.ug
 - Initial version for UGent
