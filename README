@@ -1,0 +1,24 @@
+This is a repository for SPANK plugins for Slurm develop by HPCUGent.
+
+Author: 
+	Andy Georges <andy.georges@ugent.be>
+
+Plugins
+-------
+
+## env-test
+
+Logs the environment for local and remote runs. 
+
+
+Example
+-------
+
+plugstack.conf:
+
+optional env-test.so
+
+Cleanup
+-------
+
+The plugin does not do any cleanup.
