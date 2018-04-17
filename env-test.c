@@ -56,7 +56,18 @@ int slurm_spank_exit(spank_t sp, int ac, char **av) {
 
 int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
 {
+    char nodelist[8192];
+    spank_err_t err;
+
     slurm_debug("spank:  [env-test]: slurm_spank_init_post_op");
+
+    if (err = spank_getenv(sp, "SLURM_NODELIST", nodelist, 8192) != ESPANK_SUCCESS) {
+        slurm_error("spank: [env-test]: could not get SLURM_NODELIST");
+        return err;
+    }
+
+    slurm_debug("spank: [env-test]: SLURM_NODELIST: %s", nodelist);
+
     return ESPANK_SUCCESS;
 }
 
