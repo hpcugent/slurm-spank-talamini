@@ -54,6 +54,11 @@ int slurm_spank_exit(spank_t sp, int ac, char **av) {
     return ESPANK_SUCCESS;
 }
 
+int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
+{
+    slurm_debug("spank:  [env-test]: slurm_spank_init_post_op");
+    return ESPANK_SUCCESS;
+}
 
 int slurm_spank_job_prolog(spank_t sp, int ac, char**av) {
     char **env = environ;
