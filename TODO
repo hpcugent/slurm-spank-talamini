@@ -1,0 +1,5 @@
+# Known issues
+
+- Both the <job>.batch and the job.0, job.1, ... processes create the PBS_NODEFILE and change the jobs' environment.
+  This is not a problem as the data is always correct and the environment points to the most recent file for search
+  process, but it would be nicer to have a single file and the environment variable that gets inherited.

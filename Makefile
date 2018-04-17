@@ -1,8 +1,21 @@
-all: env-test.so
 
-env-test.so: env-test.c
-	gcc -std=gnu99 -Wall -o env-test.o -fPIC -c env-test.c
-	gcc -shared -o env-test.so env-test.o
+SOURCES=env-test.c pbs_nodefile.c
+OBJECTS=$(SOURCES:.c=.o)
+SHLIBS=$(OBJECTS:.o=.so)
+
+CC=gcc
+CFLAGS=-std=gnu99 -Wall -fPIC
+LDFLAGS=-shared
+
+all: $(OBJECTS) $(SHLIBS)
+
+
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+%.so: %.o
+	$(CC) $(LDFLAGS) $< -o $@
 
 clean:
-	rm -f env-test.o env-test.so
+	rm -f $(OBJECTS) $(SHLIBS)
+

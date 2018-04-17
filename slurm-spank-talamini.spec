@@ -35,6 +35,7 @@ gcc -lslurm -o %{_builddir}/libslurm_dummy %{_builddir}/libslurm_dummy.c
 install -d %{buildroot}%{_libdir}/slurm
 install -d %{buildroot}%{_sysconfdir}/slurm/plugstack.conf.d
 install -m 755 env-test.so %{buildroot}%{_libdir}/slurm/
+install -m 755 pbs_nodefile.so %{buildroot}%{_libdir}/slurm/
 
 %clean
 rm -rf %{buildroot}
@@ -43,6 +44,7 @@ rm -rf %{buildroot}
 %doc README LICENSE
 %defattr(-,root,root,-)
 %{_libdir}/slurm/env-test.so
+%{_libdir}/slurm/pbs_nodefile.so
 
 %changelog
 * Mon Apr 15 2018 Andy Georges <andy.georges@ugent.be> - 0.0.1-1.ug
