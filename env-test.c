@@ -71,4 +71,5 @@ int slurm_spank_job_prolog(spank_t sp, int ac, char**av) {
         env++;
     }
 
+    return ESPANK_SUCCESS;
 }
