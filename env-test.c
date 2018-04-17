@@ -34,16 +34,16 @@ int slurm_spank_init(spank_t sp, int ac, char **av)
 {
     char **env = environ;
 
-    slurm_debug("SPANK [env-test]: slurm_spank_init");
+    slurm_debug("spank:  [env-test]: slurm_spank_init");
 
     if (spank_context() == S_CTX_LOCAL) {
-    	slurm_debug("SPANK [env-test]: executing in local context");
+    	slurm_debug("spank:  [env-test]: executing in local context");
     } else if (spank_context() == S_CTX_REMOTE) {
-    	slurm_debug("SPANK [env-test]: executing in remote context");
+    	slurm_debug("spank:  [env-test]: executing in remote context");
     }
 
     while (*env != NULL) {
-        slurm_debug2("SPANK [env-test]: %s", *env);
+        slurm_debug2("spank:  [env-test]: %s", *env);
         env++;
     }
 
@@ -58,16 +58,16 @@ int slurm_spank_exit(spank_t sp, int ac, char **av) {
 int slurm_spank_job_prolog(spank_t sp, int ac, char**av) {
     char **env = environ;
 
-    slurm_debug("SPANK [env-test]: slurm_spank_job_prolog");
+    slurm_debug("spank:  [env-test]: slurm_spank_job_prolog");
 
     if (spank_context() == S_CTX_LOCAL) {
-    	slurm_debug("SPANK [env-test]: executing in local context");
+    	slurm_debug("spank:  [env-test]: executing in local context");
     } else if (spank_context() == S_CTX_REMOTE) {
-    	slurm_debug("SPANK [env-test]: executing in remote context");
+    	slurm_debug("spank:  [env-test]: executing in remote context");
     }
 
     while (*env != NULL) {
-        slurm_debug2("SPANK [env-test]: env var: %s", *env);
+        slurm_debug2("spank:  [env-test]: env var: %s", *env);
         env++;
     }
 
