@@ -6,19 +6,19 @@ Author:
 Plugins
 -------
 
-## env-test
-
-Logs the environment for local and remote runs. 
-
+pbs_nodefile: generates the PBS NODEFILE contents using the torque wrapper and places it in
+              a file under TMPDIR. Creates an entry in the job's environment pointing to This
+			  file.
 
 Example
 -------
 
 plugstack.conf:
 
-optional env-test.so
+required /usr/lib64/slurm/pbs_nodefile.so command=/usr/libexec/slurm/wrapper/generate_pbs_nodefile
 
 Cleanup
 -------
 
-The plugin does not do any cleanup.
+The plugin does not do any cleanup. The PBS NODEFILE should be created in a location that
+will be cleaned up, e.g., by the epilogue or by another plugin, for example spank-private-tmp.
