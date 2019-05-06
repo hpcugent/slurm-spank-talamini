@@ -3,11 +3,11 @@
 Summary: Slurm SPANK plugins developed by HPCUGent
 Name: slurm-spank-talamini
 Version: 0.0.1
-%global rel	1
-Release: %{rel}%{gittag}%{?dist}.ug
+%global rel	2
+Release: %{rel}.%{gittag}%{?dist}.ug
 License: GPL
 Group: System Environment/Base
-Source0: %{name}-%{version}.tar.gz
+Source0: %{name}-%{version}-%{rel}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: slurm-devel
 Requires: slurm
