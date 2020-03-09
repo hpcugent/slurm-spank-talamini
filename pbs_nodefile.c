@@ -154,7 +154,7 @@ int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
     slurm_debug("spank: pbs_nodefile: SLURM_NODELIST: %s", command + pos);
     pos = strlen(command);
 
-    if ((err = spank_getenv(sp, "SLURM_TASKS_PER_NODE", taskcount, len)) != ESPANK_SUCCESS) {
+    if ((err = spank_getenv(sp, "SLURM_TASKS_PER_NODE", taskcount, 64)) != ESPANK_SUCCESS) {
         slurm_error("spank: pbs_nodefile: could not get SLURM_TASKS_PER_NODE: error %d", err);
         free(command);
         return err;
