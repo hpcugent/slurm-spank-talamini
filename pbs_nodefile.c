@@ -146,7 +146,7 @@ int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
         return ESPANK_ERROR;
     }
 
-    if ((err = spank_getenv(sp, "SLURM_NODELIST", command + pos, len)) != ESPANK_SUCCESS) {
+    if ((err = spank_getenv(sp, "SLURM_NODELIST", command + pos, len - pos - 1)) != ESPANK_SUCCESS) {
         slurm_error("spank: pbs_nodefile: could not get SLURM_NODELIST: error %d", err);
         free(command);
         return err;
