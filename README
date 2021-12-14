@@ -1,6 +1,6 @@
 This is a repository for SPANK plugins for Slurm develop by HPCUGent.
 
-Author: 
+Author:
 	Andy Georges <andy.georges@ugent.be>
 
 Plugins
@@ -9,6 +9,7 @@ Plugins
 pbs_nodefile: generates the PBS NODEFILE contents using the torque wrapper and places it in
               a file under TMPDIR. Creates an entry in the job's environment pointing to This
 			  file.
+              Get pl script from https://raw.githubusercontent.com/SchedMD/slurm/master/contribs/torque/generate_pbs_nodefile.pl
 
 Example
 -------
