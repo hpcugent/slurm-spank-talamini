@@ -23,3 +23,8 @@ Cleanup
 
 The plugin does not do any cleanup. The PBS NODEFILE should be created in a location that
 will be cleaned up, e.g., by the epilogue or by another plugin, for example spank-private-tmp.
+
+Version
+-------
+
+Works with slurm 20.11, 22.05.
