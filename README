@@ -27,4 +27,4 @@ will be cleaned up, e.g., by the epilogue or by another plugin, for example span
 Version
 -------
 
-Works with slurm 20.11, 22.05.
+Works with slurm 20.11, 22.05, 23.02
