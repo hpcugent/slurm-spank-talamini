@@ -103,7 +103,7 @@ int slurm_spank_exit(spank_t sp, int ac, char **av) {
 /*
  *  Called from both srun and slurmd after the init is complete
  */
-int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
+int slurm_spank_task_init(spank_t sp, int ac, char **av)
 {
     const int len = 32768;
     char *command = NULL;
@@ -122,7 +122,7 @@ int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
     }
     init_post_opt = 1;
 
-    slurm_debug("spank: pbs_nodefile: slurm_spank_init_post_opt");
+    slurm_debug("spank: pbs_nodefile slurm_spank_task_init");
 
     if (spank_context() != S_CTX_REMOTE) {
         slurm_debug("spank: pbs_nodefile: not doing anything in non remote context");
