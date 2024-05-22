@@ -45,6 +45,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <slurm/spank.h>
 #include <unistd.h>
 
@@ -161,7 +162,7 @@ int slurm_spank_task_init(spank_t sp, int ac, char **av)
     }
     slurm_debug("spank: pbs_nodefile: SLURM_TASKS_PER_NODE: %s", taskcount);
 
-    written = snprintf(command + pos, len - pos - 1,"' SLURM_TASKS_PER_NODE='%s' %s", taskcount, generate_pbsnodefile_command);
+    written = snprintf(command + pos, len - pos - 1,"' SLURM_TASKS_PER_NODE='%s' perl -I /usr/lib64/perl5/5.32/ %s", taskcount, generate_pbsnodefile_command);
     slurm_debug("spank: pbs_nodefile: command %s", command);
     if (written >= len - pos - 2) {
         slurm_error("spank: pbs_nodefile: tried to write more than %d bytes to buffer, aborting.", len);
@@ -174,9 +175,11 @@ int slurm_spank_task_init(spank_t sp, int ac, char **av)
         return ESPANK_ERROR;
     }
 
-    if (fscanf(fp, "%s", path) != 1) {
+    int v = 0;
+    if ((v = fscanf(fp, "%s\n", path)) != 1) {
         slurm_error("spank: pbs_nodefile: could not get name of temporary");
-        pclose(fp);
+        int stat = pclose(fp);
+        slurm_debug("spank: pbs_nodefile: return status of command is %d", WEXITSTATUS(stat));
         free(command);
         return ESPANK_ERROR;
     }
