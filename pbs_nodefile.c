@@ -162,7 +162,7 @@ int slurm_spank_task_init(spank_t sp, int ac, char **av)
     }
     slurm_debug("spank: pbs_nodefile: SLURM_TASKS_PER_NODE: %s", taskcount);
 
-    written = snprintf(command + pos, len - pos - 1,"' SLURM_TASKS_PER_NODE='%s' perl -I /usr/lib64/perl5/5.32/ %s", taskcount, generate_pbsnodefile_command);
+    written = snprintf(command + pos, len - pos - 1,"' SLURM_TASKS_PER_NODE='%s' %s", taskcount, generate_pbsnodefile_command);
     slurm_debug("spank: pbs_nodefile: command %s", command);
     if (written >= len - pos - 2) {
         slurm_error("spank: pbs_nodefile: tried to write more than %d bytes to buffer, aborting.", len);

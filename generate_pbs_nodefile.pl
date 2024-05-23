@@ -11,6 +11,8 @@
 #   the file is printed on stdout.  Intended usage is:
 #   export PBS_NODEFILE=`generate_pbs_nodefile`
 
+BEGIN {push(@INC, '/usr/lib64/perl5/5.32/')}
+
 use strict;
 use File::Temp qw( tempfile );
 use FindBin;
