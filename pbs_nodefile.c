@@ -45,6 +45,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <slurm/spank.h>
 #include <unistd.h>
 
@@ -103,7 +104,7 @@ int slurm_spank_exit(spank_t sp, int ac, char **av) {
 /*
  *  Called from both srun and slurmd after the init is complete
  */
-int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
+int slurm_spank_task_init(spank_t sp, int ac, char **av)
 {
     const int len = 32768;
     char *command = NULL;
@@ -122,7 +123,7 @@ int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
     }
     init_post_opt = 1;
 
-    slurm_debug("spank: pbs_nodefile: slurm_spank_init_post_opt");
+    slurm_debug("spank: pbs_nodefile slurm_spank_task_init");
 
     if (spank_context() != S_CTX_REMOTE) {
         slurm_debug("spank: pbs_nodefile: not doing anything in non remote context");
@@ -174,9 +175,11 @@ int slurm_spank_init_post_opt(spank_t sp, int ac, char **av)
         return ESPANK_ERROR;
     }
 
-    if (fscanf(fp, "%s", path) != 1) {
+    int v = 0;
+    if ((v = fscanf(fp, "%s\n", path)) != 1) {
         slurm_error("spank: pbs_nodefile: could not get name of temporary");
-        pclose(fp);
+        int stat = pclose(fp);
+        slurm_debug("spank: pbs_nodefile: return status of command is %d", WEXITSTATUS(stat));
         free(command);
         return ESPANK_ERROR;
     }
