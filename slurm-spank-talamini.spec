@@ -11,7 +11,6 @@ Source0: %{name}-%{version}-%{rel}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: slurm-devel
 Requires: slurm
-Requires: slurm-perlapi
 
 
 %description
@@ -52,5 +51,7 @@ rm -rf %{buildroot}
 %{_libexecdir}/slurm/generate_pbs_nodefile
 
 %changelog
+* Tue Nov 19 2024 Andy Georges <andy.georges@ugent.be> - 0.1.0-ug
+- Use new slurm env variables
 * Mon Apr 15 2018 Andy Georges <andy.georges@ugent.be> - 0.0.1-1.ug
 - Initial version for UGent
