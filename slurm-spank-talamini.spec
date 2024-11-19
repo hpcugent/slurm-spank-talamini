@@ -2,7 +2,7 @@
 %define __find_requires %{_builddir}/find-requires
 Summary: Slurm SPANK plugins developed by HPCUGent
 Name: slurm-spank-talamini
-Version: 0.0.5
+Version: 0.1.0
 %global rel	1
 Release: %{rel}.%{gittag}%{?dist}.ug
 License: GPL
@@ -39,7 +39,7 @@ install -d %{buildroot}%{_libexecdir}/slurm
 install -d %{buildroot}%{_sysconfdir}/slurm/plugstack.conf.d
 install -m 755 env-test.so %{buildroot}%{_libdir}/slurm/
 install -m 755 pbs_nodefile.so %{buildroot}%{_libdir}/slurm/
-install -m 755 generate_pbs_nodefile.pl %{buildroot}%{_libexecdir}/slurm/generate_pbs_nodefile
+install -m 755 generate_pbs_nodefile.py %{buildroot}%{_libexecdir}/slurm/generate_pbs_nodefile
 
 %clean
 rm -rf %{buildroot}
