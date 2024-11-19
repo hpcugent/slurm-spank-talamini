@@ -28,12 +28,16 @@ def expand_cpus_pattern(input_string):
 
     return result
 
+
 def main():
 
     SLURM_JOB_CPUS_PER_NODE = os.environ.get('SLURM_JOB_CPUS_PER_NODE', '')
-    SLURM_JOB_NODELIST = os.environ.get('SLURM_JOB_NODELIST', '')
+    SLURM_NODELIST = os.environ.get('SLURM_NODELIST', '')
 
-    nodes = SLURM_JOB_NODELIST.split(',')
+    if not SLURM_JOB_CPUS_PER_NODE or not SLURM_NODELIST:
+        exit(1)
+
+    nodes = SLURM_NODELIST.split(',')
 
     # SLURM_JOB_CPUS_PER_NODE is of the form (n(xm),)?((i,)+(s(xt))?)+ with n,m,i,s,t integers
     cpus = expand_cpus_pattern(SLURM_JOB_CPUS_PER_NODE)
@@ -44,5 +48,6 @@ def main():
 
         print(f"{pbsnodefile.name}")
 
-if __name__ == 'main':
+
+if __name__ == '__main__':
     main()
