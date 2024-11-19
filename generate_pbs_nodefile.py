@@ -42,5 +42,7 @@ def main():
         for node, cpu_count in zip(nodes, cpus):
             pbsnodefile.write(f"{node}\n" * cpu_count)
 
+        print(f"{pbsnodefile.name}")
+
 if __name__ == 'main':
     main()
