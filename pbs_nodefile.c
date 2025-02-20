@@ -108,7 +108,7 @@ int slurm_spank_task_init(spank_t sp, int ac, char **av)
 {
     const int len = 32768;
     char *command = NULL;
-    char taskcount[64];
+    char taskcount[1024];
     spank_err_t err;
     int pos = 0;                // End of (current) command buffer
     int written = 0;            // Total number of characters (bytes) written into the command buffer
@@ -155,14 +155,14 @@ int slurm_spank_task_init(spank_t sp, int ac, char **av)
     slurm_debug("spank: pbs_nodefile: SLURM_NODELIST: %s", command + pos);
     pos = strlen(command);
 
-    if ((err = spank_getenv(sp, "SLURM_TASKS_PER_NODE", taskcount, 64)) != ESPANK_SUCCESS) {
-        slurm_error("spank: pbs_nodefile: could not get SLURM_TASKS_PER_NODE: error %d", err);
+    if ((err = spank_getenv(sp, "SLURM_JOB_CPUS_PER_NODE", taskcount, 1024)) != ESPANK_SUCCESS) {
+        slurm_error("spank: pbs_nodefile: could not get SLURM_JOB_CPUS_PER_NODE: error %d", err);
         free(command);
         return err;
     }
-    slurm_debug("spank: pbs_nodefile: SLURM_TASKS_PER_NODE: %s", taskcount);
+    slurm_debug("spank: pbs_nodefile: SLURM_JOB_CPUS_PER_NODE: %s", taskcount);
 
-    written = snprintf(command + pos, len - pos - 1,"' SLURM_TASKS_PER_NODE='%s' %s", taskcount, generate_pbsnodefile_command);
+    written = snprintf(command + pos, len - pos - 1,"' SLURM_JOB_CPUS_PER_NODE='%s' %s", taskcount, generate_pbsnodefile_command);
     slurm_debug("spank: pbs_nodefile: command %s", command);
     if (written >= len - pos - 2) {
         slurm_error("spank: pbs_nodefile: tried to write more than %d bytes to buffer, aborting.", len);

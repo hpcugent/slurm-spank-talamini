@@ -2,7 +2,7 @@
 %define __find_requires %{_builddir}/find-requires
 Summary: Slurm SPANK plugins developed by HPCUGent
 Name: slurm-spank-talamini
-Version: 0.0.5
+Version: 0.1.0
 %global rel	1
 Release: %{rel}.%{gittag}%{?dist}.ug
 License: GPL
@@ -11,7 +11,6 @@ Source0: %{name}-%{version}-%{rel}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: slurm-devel
 Requires: slurm
-Requires: slurm-perlapi
 
 
 %description
@@ -39,7 +38,7 @@ install -d %{buildroot}%{_libexecdir}/slurm
 install -d %{buildroot}%{_sysconfdir}/slurm/plugstack.conf.d
 install -m 755 env-test.so %{buildroot}%{_libdir}/slurm/
 install -m 755 pbs_nodefile.so %{buildroot}%{_libdir}/slurm/
-install -m 755 generate_pbs_nodefile.pl %{buildroot}%{_libexecdir}/slurm/generate_pbs_nodefile
+install -m 755 generate_pbs_nodefile.py %{buildroot}%{_libexecdir}/slurm/generate_pbs_nodefile
 
 %clean
 rm -rf %{buildroot}
@@ -52,5 +51,7 @@ rm -rf %{buildroot}
 %{_libexecdir}/slurm/generate_pbs_nodefile
 
 %changelog
+* Tue Nov 19 2024 Andy Georges <andy.georges@ugent.be> - 0.1.0-ug
+- Use new slurm env variables
 * Mon Apr 15 2018 Andy Georges <andy.georges@ugent.be> - 0.0.1-1.ug
 - Initial version for UGent
